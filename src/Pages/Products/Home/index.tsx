@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Container, Row } from "react-bootstrap";
-import { Link, Route } from "react-router-dom";
-import ProductDetail from "../Details";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +18,6 @@ const Home = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(products);
   return (
     <>
       <h1>Products</h1>
@@ -29,7 +27,7 @@ const Home = () => {
             {products.map((product: any, i) => {
               return (
                 <Card style={{ width: "18rem" }} key={i} className={"m-2"}>
-                  <Link key={product.id} to={`Details/${product.id}`}>
+                  <Link key={product.id} to={`product/${product.id}`}>
                     {<Card.Img variant="top" src={product.fotos[0].src} />}
                   </Link>
 
