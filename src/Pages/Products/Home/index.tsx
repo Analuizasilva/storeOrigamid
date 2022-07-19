@@ -5,24 +5,20 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [products, setProducts] = useState([]);
 
-  const fetchData = () => {
-    fetch("https://ranekapi.origamid.dev/json/api/produto")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setProducts(data);
-      });
-  };
-
   useEffect(() => {
-    fetchData();
-  }, []);
+    async function fetchData(url) {
+      const response = await fetch(url);
+      const json = await response.json();
+      setProducts(json);
+    }
+    fetchData("https://ranekapi.origamid.dev/json/api/produto");
+  }, [products]);
+
   return (
     <>
-      <h1>Products</h1>
       {products ? (
         <Container>
+          <h1>Products</h1>
           <Row>
             {products.map((product: any, i) => {
               return (
@@ -39,11 +35,11 @@ const Home = () => {
               );
             })}
           </Row>
+          <Link to={`/contacts`}>
+            <Button>Contacts</Button>
+          </Link>
         </Container>
       ) : null}
-      <Link to={`Details`}>
-        <Button>Contacts</Button>
-      </Link>
     </>
   );
 };
