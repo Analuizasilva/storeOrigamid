@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Badge, Card, Container, Row } from "react-bootstrap";
+import CardHeader from "react-bootstrap/esm/CardHeader";
 import { useParams } from "react-router-dom";
 import Loading from "../../../Components/Loading/index.tsx"
 
@@ -33,11 +34,11 @@ const Product = () => {
   return (
     <>
       {product ? (
-      <Container >
+      <Container>
         <h1>{product.nome}</h1>
-        <Row>
-        <Card style={{ width: "20rem"}} className={"m-2"}>
-          {<Card.Img variant="top" src={product.fotos[0].src} />}
+        <Row style={{ placeContent:"center"}}>
+        <Card style={{ width: "20rem"}} >    
+          {<Card.Img style={{height: "20rem"}}  variant="top" src={product.fotos[0].src} />}
         <Card.Body style={{ textAlign:"justify"  }} >
           <Card.Title></Card.Title>
           <Card.Text>   
